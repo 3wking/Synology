@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 RED_COLOR='\e[1;31m' #红色
 GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
@@ -41,9 +41,7 @@ if [ $? -ne 0 ]; then
 	exit 1
 
 fi
-
 )
-
 
 Install() (
 	# 安装
@@ -67,3 +65,10 @@ Install() (
 	rm -rf $dir
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
+
+Download
+if [ $? -eq 0 ]; then
+	Install
+else
+	exit 1
+fi		
