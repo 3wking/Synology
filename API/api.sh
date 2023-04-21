@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 RED_COLOR='\e[1;31m' #红色
 GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
