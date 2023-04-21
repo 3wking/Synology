@@ -53,14 +53,14 @@ Install() (
 		rm -rf $dir
 		exit 1
 	fi
-	echo -e "${RED_COLOR}更改权限0775.{RES}\r\n"
+	echo -e "${GREEN_COLOR}更改权限0775.${RES}\r\n"
 	chmod -R 755 /usr/local/bin/Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限0775.${RES}\r\n"
 		rm -rf $dir /usr/local/bin/Synoapi
 		exit 1
 	fi
-	echo -e "${RED_COLOR}启动Synoapi.{RES}\r\n"
+	echo -e "${GREEN_COLOR}启动Synoapi.${RES}\r\n"
 	nohup /usr/local/bin/Synoapi > /dev/null &
 	rm -rf $dir
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
