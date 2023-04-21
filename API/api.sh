@@ -46,8 +46,8 @@ fi
 Install() (
 	# 安装
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
-	echo -e "${RED_COLOR}移动文件到</usr/local/bin>目录.{RES}\r\n"
-	mv Synoapi /usr/local/bin
+	echo -e "${RED_COLOR}移动文件到</usr/bin>目录.{RES}\r\n"
+	mv Synoapi /usr/bin
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
 		rm -rf $dir
@@ -61,7 +61,7 @@ Install() (
 		exit 1
 	fi
 	echo -e "${RED_COLOR}启动Synoapi.{RES}\r\n"
-	nohup /usr/local/bin/Synoapi > /dev/null &
+	nohup /usr/bin/Synoapi > /dev/null &
 	rm -rf $dir
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
