@@ -46,22 +46,22 @@ fi
 Install() (
 	# 安装
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
-	echo -e "${RED_COLOR}移动文件到</usr/bin>目录.{RES}\r\n"
-	mv Synoapi /usr/bin
+	echo -e "${RED_COLOR}移动文件到</usr/local/bin>目录.{RES}\r\n"
+	mv Synoapi /usr/local/bin
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
 		rm -rf $dir
 		exit 1
 	fi
 	echo -e "${RED_COLOR}更改权限0775.{RES}\r\n"
-	chmod -R 755 /usr/bin/Synoapi
+	chmod -R 755 /usr/local/bin/Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限0775.${RES}\r\n"
-		rm -rf $dir /usr/bin/Synoapi
+		rm -rf $dir /usr/local/bin/Synoapi
 		exit 1
 	fi
 	echo -e "${RED_COLOR}启动Synoapi.{RES}\r\n"
-	nohup /usr/bin/Synoapi > /dev/null &
+	nohup /usr/local/bin/Synoapi > /dev/null &
 	rm -rf $dir
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
