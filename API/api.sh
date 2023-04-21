@@ -1,10 +1,10 @@
-#!/bin/sudo /bin/bash
+#!/bin/bash
 RED_COLOR='\e[1;31m' #红色
 GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
 
 #下载路径
-Synoapi=""
+Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi"
 #创建临时目录
 dir=$(mktemp -d) && cd $dir || exit 1
 #设置GitHub加速下载
