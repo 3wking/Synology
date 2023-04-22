@@ -49,6 +49,7 @@ Install() (
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改0775权限.${RES}\r\n"
+	sudo chmod -R 0755 $api
 	sudo chmod -R 0755 $api/Synoapi.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
