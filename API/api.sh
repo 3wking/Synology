@@ -34,7 +34,7 @@ Install() (
 	api="/usr/syno/synoman/api"
 	if [ ! -d ${api} ]; then
 		echo -e "${RED_COLOR}创建<${api}>目录.{RES}\r\n"
-		mkdir ${api}
+		sudo mkdir ${api}
 		if [ $? -ne 0 ]; then
 			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
 			rm -rf $dir
