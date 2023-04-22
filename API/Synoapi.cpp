@@ -64,22 +64,30 @@ int main() {
 	char buff[1024]={0};
 	char result[1024]={0};
 	
-	
 	printf("Content-Type:text/html;charset=utf-8\r\n\r\n");
-	// printf(getenv("REMOTE_HOST"));
-	// printf(getenv("GATEWAY_INTERFACE")); //cgi协议的版本
-	//printf(getenv("REQUEST_METHOD"));		//获取请求的方式
+	/*
+		REMOTE_HOST			//发送CGI请求的客户机的主机名
+		GATEWAY_INTERFACE 	//cgi协议的版本
+		REQUEST_METHOD		//获取请求的方式
+		REMOTE_ADDR			//发送请求的客户机的IP地址
+	*/
+	//请求的IP地址
+	string host=getenv("REMOTE_ADDR");
+	if (host=="127.0.0.1") { //判断请求的客户端IP地址
 		if(!strcmp(getenv("REQUEST_METHOD"),"GET")) {
 			//直接通过环境变量得到get的请求参数
 			char *get=getenv("QUERY_STRING"); 	//获取get数据
 			sscanf(get,"sh=%s",tmp);
 			//替换出空格
 			replace_string(sh,tmp,"%20"," ");
-			//只用 bash 命令
+			//运行命令
+			ExecuteCMD(sh,result);
+			/*
+			//只用<bash>命令
 			strcpy(shell, "/bin/bash ");
 			strcat(shell, sh);
-			//运行命令
 			ExecuteCMD(shell,result);
+			*/
 			replace_string(buff,result,"\n","<br>");
 			//printf("{\"shell\": \"%s\",\"result\": \"%s\"}",shell,result);
 			std::cout << "<html>\n";
@@ -87,7 +95,7 @@ int main() {
             std::cout << "legend{color: Black; font-size: 15px;}\n";
 			std::cout << "</style>\n";
 			std::cout << "<fieldset>\n";
-			std::cout << "<legend>脚本位置：</legend>\n";
+			std::cout << "<legend>Shell命令：</legend>\n";
 			std::cout << "<font color='red'size='5'>"<< tmp << "</font>\n";
 			std::cout << "<br>\n";
 			std::cout << "</fieldset>\n";
@@ -119,16 +127,28 @@ int main() {
 			std::cout << "</style>\n";
 			std::cout << "<fieldset>\n";
 			std::cout << "<legend>脚本位置：</legend>\n";
-			std::cout << "<font color='red'size='5'>"<< tmp << "</font>\n";
+			std::cout << "<font color='red'size='4'>"<< tmp << "</font>\n";
 			std::cout << "<br>\n";
 			std::cout << "</fieldset>\n";
 			std::cout << "<br><br>\n";
 			std::cout << "<fieldset>\n";
 			std::cout << "<legend>执行结果：</legend>\n";
-			std::cout << "<font color='red'size='5'>"<< result << "</font>\n";
+			std::cout << "<font color='red'size='4'>"<< result << "</font>\n";
 			std::cout << "<br><br>\n";
 			std::cout << "</fieldset>\n";
 			std::cout << "</html>\n";
 			}
+		}else{
+			std::cout << "<html>\n";
+			std::cout << "<style>\n";
+            std::cout << "legend{color: Black; font-size: 15px;}\n";
+			std::cout << "</style>\n";
+			std::cout << "<fieldset>\n";
+			std::cout << "<legend>错误：</legend>\n";
+			std::cout << "<font color='red'size='4'>请用<本地IP地址>请求</font>\n";
+			std::cout << "<br><br>\n";
+			std::cout << "</fieldset>\n";
+			std::cout << "</html>\n";
+			}	
 		return 0;
 }
