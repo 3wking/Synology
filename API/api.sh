@@ -33,7 +33,13 @@ Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	api="/usr/syno/synoman/api"
 	if [ ! -d ${api} ]; then
+		echo -e "${RED_COLOR}创建<${api}>目录.{RES}\r\n"
 		mkdir ${api}
+		if [ $? -ne 0 ]; then
+			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
+			rm -rf $dir
+			exit 1
+		fi
 	fi
 	echo -e "${RED_COLOR}移动文件到<${api}>目录.{RES}\r\n"
 	mv Synoapi.cgi $api
@@ -46,7 +52,7 @@ Install() (
 	chmod -R 0755 $api/Synoapi.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
-		rm -rf $dir /usr/local/bin/Synoapi
+		rm -rf $dir ${api}/Synoapi.cgi
 		exit 1
 	fi
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
