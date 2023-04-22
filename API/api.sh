@@ -4,7 +4,7 @@ GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
 
 #下载路径
-Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi"
+Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi.cgi"
 #创建临时目录
 dir=$(mktemp -d) && cd $dir || exit 1
 #设置GitHub加速下载
@@ -28,41 +28,27 @@ Download() (
 	fi
 )	
 
-autostart() (
-echo -e "${RED_COLOR}写入开机自启动.{RES}\r\n"
-usr="/usr/syno/etc.defaults/rc.sysv/Synoapi.sh"
-cat >$usr<<EOF
-#/bin/bash
-nohup /usr/local/bin/Synoapi > /dev/null
-EOF
-if [ $? -ne 0 ]; then
-	echo -e "${RED_COLOR}写入自启动失败.${RES}\r\n"
-	rm -rf $dir /usr/local/bin/Synoapi
-	exit 1
-
-fi
-)
-
 Install() (
 	# 安装
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
-	echo -e "${RED_COLOR}移动文件到</usr/local/bin>目录.{RES}\r\n"
-	mv Synoapi /usr/local/bin
+	api="/usr/syno/synoman/api"
+	if [ ! -d ${api} ]; then
+		mkdir ${api}
+	fi
+	echo -e "${RED_COLOR}移动文件到<${api}>目录.{RES}\r\n"
+	mv Synoapi.cgi $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
 		rm -rf $dir
 		exit 1
 	fi
-	echo -e "${GREEN_COLOR}更改权限0775.${RES}\r\n"
-	chmod -R 755 /usr/local/bin/Synoapi
+	echo -e "${GREEN_COLOR}更改0775权限.${RES}\r\n"
+	chmod -R 0755 $api/Synoapi.cgi
 	if [ $? -ne 0 ]; then
-		echo -e "${RED_COLOR}更改权限0775.${RES}\r\n"
+		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
 		rm -rf $dir /usr/local/bin/Synoapi
 		exit 1
 	fi
-	echo -e "${GREEN_COLOR}启动Synoapi.${RES}\r\n"
-	nohup /usr/local/bin/Synoapi > /dev/null &
-	rm -rf $dir
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
 
