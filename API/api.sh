@@ -33,15 +33,15 @@ Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	api="/usr/syno/synoman/api"
 	if [ ! -d ${api} ]; then
-		echo -e "${RED_COLOR}创建<${api}>目录.{RES}\r\n"
-		sudo mkdir ${api}
+		echo -e "${GREEN_COLOR}创建<${api}>目录.{RES}\r\n"
+			mkdir ${api}
 		if [ $? -ne 0 ]; then
 			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
 			rm -rf $dir
 			exit 1
 		fi
 	fi
-	echo -e "${RED_COLOR}移动文件到<${api}>目录.{RES}\r\n"
+	echo -e "${GREEN_COLOR}移动文件到<${api}>目录.{RES}\r\n"
 	mv Synoapi.cgi $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
@@ -60,7 +60,7 @@ Install() (
 
 Download
 if [ $? -eq 0 ]; then
-	Install
+	sudo -i && Install
 else
 	exit 1
 fi		
