@@ -34,25 +34,25 @@ Install() (
 	api="/usr/syno/synoman/api"
 	if [ ! -d ${api} ]; then
 		echo -e "${GREEN_COLOR}创建<${api}>目录.{RES}\r\n"
-			mkdir ${api}
+			sudo mkdir ${api}
 		if [ $? -ne 0 ]; then
 			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
-			rm -rf $dir
+			sudo rm -rf $dir
 			exit 1
 		fi
 	fi
 	echo -e "${GREEN_COLOR}移动文件到<${api}>目录.{RES}\r\n"
-	mv Synoapi.cgi $api
+	sudo mv Synoapi.cgi $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
-		rm -rf $dir
+		sudo rm -rf $dir
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改0775权限.${RES}\r\n"
-	chmod -R 0755 $api/Synoapi.cgi
+	sudo chmod -R 0755 $api/Synoapi.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
-		rm -rf $dir ${api}/Synoapi.cgi
+		sudo rm -rf $dir ${api}/Synoapi.cgi
 		exit 1
 	fi
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
@@ -60,7 +60,7 @@ Install() (
 
 Download
 if [ $? -eq 0 ]; then
-	sudo -i && Install
+	 Install
 else
 	exit 1
 fi		
