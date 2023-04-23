@@ -5,7 +5,8 @@ RES='\e[0m' #尾
 
 #下载路径
 Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/api.cgi"
-
+#创建临时目录
+dir=$(mktemp -d) && cd $dir || exit 1
 #设置GitHub加速下载
 ip_info=$(curl -sk https://ip.cooluc.com)
 country_code=$(echo $ip_info | sed -r 's/.*country_code":"([^"]*).*/\1/')
@@ -15,35 +16,6 @@ if [ $country_code = "CN" ]; then
 		mirror="https://github.cooluc.com/"
 	fi
 fi
-
-# 检查
-Check() (
-	echo -e "\r\n${GREEN_COLOR}正在检查目录...${RES}\r\n"
-	dir="/usr/syno/synoman/api"
-	if [ ! -d $dir ]; then
-		echo -e "${GREEN_COLOR}创建<${dir}>目录.{RES}\r\n"
-		sudo mkdir $dir
-		if [ $? -ne 0 ]; then
-			echo -e "${RED_COLOR}创建<${dir}>目录失败.${RES}\r\n"
-			sudo rm -rf $dir
-			exit 1
-		fi
-		echo -e "${GREEN_COLOR}更改<${dir}>目录权限.{RES}\r\n"
-		sudo chmod -R 0777 $dir
-		if [ $? -ne 0 ]; then
-			echo -e "${RED_COLOR}更改<${dir}>权限失败.${RES}\r\n"
-			sudo rm -rf $dir
-			exit 1
-		fi		
-	fi
-	echo -e "\r\n${GREEN_COLOR}跳转<${dir}>目录${RES}\r\n"
-	cd $dir
-	if [ $? -ne 0 ]; then
-		echo -e "${RED_COLOR}跳转<${dir}>目录失败.${RES}\r\n"
-		sudo rm -rf $dir
-		exit 1
-	fi	
-)
 
 #下载
 Download() (
@@ -55,25 +27,54 @@ Download() (
 		rm -rf $dir
 		exit 1
 	fi
-)	
+)
+
+# 检查
+Check() (
+	echo -e "\r\n${GREEN_COLOR}正在检查目录...${RES}\r\n"
+	api="/usr/syno/synoman/api"
+	if [ ! -d $api ]; then
+		echo -e "${GREEN_COLOR}创建<${api}>目录.{RES}\r\n"
+		sudo mkdir $api
+		if [ $? -ne 0 ]; then
+			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
+			sudo rm -rf $dir
+			exit 1
+		fi
+		echo -e "${GREEN_COLOR}更改<${api}>目录权限.{RES}\r\n"
+		sudo chmod -R 0777 $api
+		if [ $? -ne 0 ]; then
+			echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
+			sudo rm -rf $dir $api
+			exit 1
+		fi		
+	fi
+)
+	
 
 # 安装
 Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
+	echo -e "${GREEN_COLOR}移动文件权限.${RES}\r\n"
+	sudo mv $dir/* $api
+	if [ $? -ne 0 ]; then
+		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
+		sudo rm -rf $dir $api
+		exit 1
+	fi
 	echo -e "${GREEN_COLOR}更改api权限.${RES}\r\n"
 	sudo chmod -R 0777 $dir/*.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
-		sudo rm -rf $dir
+		sudo rm -rf $dir $api
 		exit 1
 	fi
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
 
-
-Check
+Download
 if [ $? -eq 0 ]; then
-	 Download
+	 Check
 else
 	exit 1
 fi
