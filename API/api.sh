@@ -55,8 +55,8 @@ Check() (
 # 安装
 Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
-	echo -e "${GREEN_COLOR}移动文件权限.${RES}\r\n"
-	sudo mv $dir/* $api
+	echo -e "${GREEN_COLOR}移动文件.${RES}\r\n"
+	mv $dir/* $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
 		sudo rm -rf $dir $api
