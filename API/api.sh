@@ -43,7 +43,7 @@ Check() (
 		fi			
 	fi
 	echo -e "${GREEN_COLOR}更改<${api}>目录权限.${RES}\r\n"
-	sudo chmod -R 0777 $api
+	sudo chmod -R 0755 $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
 		sudo rm -rf $dir $api
@@ -64,7 +64,7 @@ Install() (
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
-	sudo chmod -R 0777 $api/*.cgi
+	sudo chmod -R 0755 $api/*.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
 		sudo rm -rf $dir $api
