@@ -60,7 +60,7 @@ Install() (
 	sudo -i mv $dir/*.cgi $api/
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
-		sudo -i rm -rf $dir $
+		sudo -i rm -rf $dir $api
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
