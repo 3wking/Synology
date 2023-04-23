@@ -34,8 +34,8 @@ Check() (
 	echo -e "\r\n${GREEN_COLOR}正在检查目录...${RES}\r\n"
 	api="/usr/syno/synoman/api"
 	if [ ! -d $api ]; then
-		echo -e "${GREEN_COLOR}创建<${api}>目录.{RES}\r\n"
-		sudo mkdir $api
+		echo -e "${GREEN_COLOR}创建<${api}>目录.${RES}\r\n"
+		mkdir $api
 		if [ $? -ne 0 ]; then
 			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
 			sudo rm -rf $dir
@@ -43,10 +43,10 @@ Check() (
 		fi			
 	fi
 	echo -e "${GREEN_COLOR}更改<${api}>目录权限.${RES}\r\n"
-	sudo chmod -R 0755 $api
+	chmod -R 0755 $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
-		sudo rm -rf $dir $api
+		rm -rf $dir $api
 		exit 1
 	fi
 	
@@ -57,17 +57,17 @@ Check() (
 Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}移动文件...${RES}\r\n"
-	sudo mv $dir/*.cgi $api/
+	mv $dir/*.cgi $api/
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
-		sudo rm -rf $dir $
+		rm -rf $dir $
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
-	sudo chmod -R 0755 $api/*.cgi
+	chmod -R 0755 $api/*.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
-		sudo rm -rf $dir $api
+		rm -rf $dir $api
 		exit 1
 	fi
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
