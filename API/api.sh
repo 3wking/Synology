@@ -40,15 +40,16 @@ Check() (
 			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
 			sudo rm -rf $dir
 			exit 1
-		fi
-		echo -e "${GREEN_COLOR}更改<${api}>目录权限.{RES}\r\n"
-		sudo chmod -R 0777 $api
-		if [ $? -ne 0 ]; then
-			echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
-			sudo rm -rf $dir $api
-			exit 1
-		fi		
+		fi			
 	fi
+	echo -e "${GREEN_COLOR}更改<${api}>目录权限.{RES}\r\n"
+	sudo chmod -R 0777 $api
+	if [ $? -ne 0 ]; then
+		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
+		sudo rm -rf $dir $api
+		exit 1
+	fi
+	
 )
 	
 
@@ -56,7 +57,7 @@ Check() (
 Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}移动文件...${RES}\r\n"
-	sudo mv $dir/api.cgi $api/
+	sudo mv $dir/*.cgi $api/
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
 		sudo rm -rf $dir $
