@@ -35,15 +35,15 @@ Check() (
 	api="/usr/syno/synoman/api"
 	if [ ! -d $api ]; then
 		echo -e "${GREEN_COLOR}创建<${api}>目录.${RES}\r\n"
-		mkdir $api
+		sudo -i mkdir $api
 		if [ $? -ne 0 ]; then
 			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
-			sudo rm -rf $dir
+			rm -rf $dir
 			exit 1
 		fi			
 	fi
 	echo -e "${GREEN_COLOR}更改<${api}>目录权限.${RES}\r\n"
-	chmod -R 0755 $api
+	sudo -i chmod -R 0755 $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
 		rm -rf $dir $api
@@ -64,7 +64,7 @@ Install() (
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
-	chmod -R 0755 $api/*.cgi
+	sudo -i chmod -R 0755 $api/*.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
 		rm -rf $dir $api
