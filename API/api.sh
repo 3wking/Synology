@@ -7,6 +7,8 @@ RES='\e[0m' #尾
 Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/api.cgi"
 #创建临时目录
 dir=$(mktemp -d) && cd $dir || exit 1
+#api目录
+api="/usr/syno/synoman/api"
 #设置GitHub加速下载
 ip_info=$(curl -sk https://ip.cooluc.com)
 country_code=$(echo $ip_info | sed -r 's/.*country_code":"([^"]*).*/\1/')
@@ -32,7 +34,6 @@ Download() (
 # 检查
 Check() (
 	echo -e "\r\n${GREEN_COLOR}正在检查目录...${RES}\r\n"
-	api="/usr/syno/synoman/api"
 	if [ ! -d $api ]; then
 		echo -e "${GREEN_COLOR}创建<${api}>目录.${RES}\r\n"
 		sudo mkdir $api
@@ -40,7 +41,14 @@ Check() (
 			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
 			sudo rm -rf $dir
 			exit 1
-		fi			
+		fi				
+	fi
+	echo -e "${GREEN_COLOR}更改<${api}>目录权限.${RES}\r\n"
+	sudo chmod -R 0755 $api
+	if [ $? -ne 0 ]; then
+		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
+		sudo rm -rf $dir $api
+		exit 1
 	fi	
 )
 	
@@ -52,13 +60,6 @@ Install() (
 	sudo mv $dir/api.cgi $api/
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
-		sudo rm -rf $dir $api
-		exit 1
-	fi
-	echo -e "${GREEN_COLOR}更改<${api}>目录权限.${RES}\r\n"
-	sudo chmod -R 0755 $api
-	if [ $? -ne 0 ]; then
-		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
 		sudo rm -rf $dir $api
 		exit 1
 	fi
