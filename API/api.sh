@@ -42,7 +42,7 @@ Check() (
 			exit 1
 		fi			
 	fi
-	echo -e "${GREEN_COLOR}更改<${api}>目录权限.{RES}\r\n"
+	echo -e "${GREEN_COLOR}更改<${api}>目录权限.${RES}\r\n"
 	sudo chmod -R 0777 $api
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
