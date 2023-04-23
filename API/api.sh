@@ -56,10 +56,10 @@ Check() (
 Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}移动文件...${RES}\r\n"
-	sudo mv $dir/* $api/
+	sudo mv $dir/api.cgi $api/
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
-		sudo rm -rf $dir $api
+		sudo rm -rf $dir $
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
