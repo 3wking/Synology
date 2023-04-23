@@ -63,7 +63,7 @@ Install() (
 		exit 1
 	fi
 	echo -e "${GREEN_COLOR}更改api权限.${RES}\r\n"
-	sudo chmod -R 0777 $dir/*.cgi
+	sudo chmod -R 0777 $api/*.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
 		sudo rm -rf $dir $api
