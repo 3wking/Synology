@@ -48,9 +48,8 @@ Check() (
 #下载
 Download() (
 	echo -e "\r\n${GREEN_COLOR}下载软件包 ...${RES}\r\n"
-	
 	echo -e "${GREEN_COLOR}正在下载 $Synoapi ...${RES}"
-	curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
+	sudo curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}下载 $Synoapi 失败.${RES}\r\n"
 		rm -rf $dir
