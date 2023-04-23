@@ -21,7 +21,7 @@ fi
 Download() (
 	echo -e "\r\n${GREEN_COLOR}下载软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}正在下载 $Synoapi ...${RES}"
-	sudo curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
+	curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}下载 $Synoapi 失败.${RES}\r\n"
 		rm -rf $dir
@@ -56,7 +56,7 @@ Check() (
 Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}移动文件.${RES}\r\n"
-	sudo mv -f *.cgi $api/
+	sudo mv -f $dir/*.cgi $api/
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
 		sudo rm -rf $dir $api
