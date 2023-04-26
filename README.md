@@ -7,3 +7,7 @@ sudo -i curl -k https://raw.iqiq.io/3wking/Synology/main/API/api.sh | bash
 ```sh
 curl http://127.0.0.1:5000/api/Synoapi.cgi?sh=<Your command>
 ```
+##### 备份
+```sh
+curl -k https://raw.iqiq.io/3wking/Synology/main/Shell/backups.sh | bash
+```
