@@ -3,7 +3,7 @@ synoinfo="/etc/synoinfo.conf"
 Network() (
 #取网口名称
 eth=$(ip link | grep ^[0-9] | grep eth[0-9] | awk -F: '{print $2}')
-echo -e "获取网口：\n$eth"
+echo -e "获取网口：" $eth
 #取网口数量
 int=$(echo $eth | grep -o eth | wc -l)
 #修改网口数量
