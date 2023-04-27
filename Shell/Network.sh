@@ -26,10 +26,10 @@ for ((i=1;i<"$int+1";i++)) ; do
 		echo "添加网口：$net."
 		synodsmnotify -t dsm @administrators "Network" "添加网口：$net." >/dev/null
 		if ! grep -q "${net}_mtu" $synoinfo; then
-			sed -i '/'$tmp_eth'_wol/a\'$net'_mtu=\"1500\"' $synoinfo
+			sed -i '/'$tmp_eth'_wol/a\'$net'_mtu="1500"' $synoinfo
 		fi
 		if ! grep -q "${net}_wol" $synoinfo; then
-			sed -i '/'$net'_mtu/a\'$net'_wol_options=\"d\"' $synoinfo
+			sed -i '/'$net'_mtu/a\'$net'_wol_options="d"' $synoinfo
 		fi
 	fi
 	sleep 1	
