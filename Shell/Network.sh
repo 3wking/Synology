@@ -32,7 +32,7 @@ for ((i=1;i<"$int+1";i++)) ; do
 			sed -i '/'$net'_mtu/a\'$net'_wol_options=\"d\"' $synoinfo
 		fi
 	fi
-	sleep 5	
+	sleep 1	
 done
 )
 Network
