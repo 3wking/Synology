@@ -11,3 +11,7 @@ curl http://127.0.0.1:5000/api/Synoapi.cgi?sh=<Your command>
 ```sh
 curl -k https://raw.iqiq.io/3wking/Synology/main/Shell/backups.sh | bash
 ```
+##### 添加网口
+```sh
+curl -k https://raw.iqiq.io/3wking/Synology/main/Shell/Network.sh | bash
+```
