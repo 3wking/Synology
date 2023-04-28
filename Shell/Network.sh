@@ -1,5 +1,5 @@
 #!/bin/bash
-synoinfo="/etc/synoinfo.conf"
+synoinfo="/etc.defaults/synoinfo.conf"
 Network() (
 #取网口名称
 eth=$(ip link | grep ^[0-9] | grep eth[0-9] | awk -F: '{print $2}')
