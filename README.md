@@ -15,3 +15,7 @@ curl -k https://raw.iqiq.io/3wking/Synology/main/Shell/backups.sh | bash
 ```sh
 curl -k https://raw.iqiq.io/3wking/Synology/main/Shell/Network.sh | bash
 ```
+##### 开机通知
+```sh
+curl -k https://raw.iqiq.io/3wking/Synology/main/Shell/Power.sh | bash
+```
