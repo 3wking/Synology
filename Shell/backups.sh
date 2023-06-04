@@ -1,6 +1,6 @@
 #!/bin/bash
 # 备份
-backups() (
+function backups() (
 	# 开始备份《动漫》
 	echo "开始备份<动漫>."
 	synodsmnotify -t dsm @administrators "备份" "开始备份<动漫>." >/dev/null
