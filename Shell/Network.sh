@@ -1,6 +1,7 @@
 #!/bin/bash
 synoinfo="/etc.defaults/synoinfo.conf"
-Network() (
+
+function Network() (
 #取网口名称
 eth=$(ip link | grep ^[0-9] | grep eth[0-9] | awk -F: '{print $2}')
 echo -e "获取网口：" $eth

@@ -1,4 +1,5 @@
 #!/bin/bash
+
 for((i=1;i<=60;i++));do
 	echo "运行次数"$i
 	status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST "http://localhost:5700")
