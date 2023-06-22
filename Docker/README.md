@@ -46,5 +46,5 @@ docker pull debian
 ## Shell
 ##### ssh
 ```sh
-curl -k https://raw.iqiq.io/3wking/Synology/main/Docker/ssh.sh | bash
+curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Docker/ssh.sh | bash
 ```
