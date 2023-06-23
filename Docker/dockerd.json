@@ -1,0 +1,1 @@
+{"data-root":"/var/packages/Docker/target/docker","log-driver":"db","registry-mirrors":["https://registry.docker-cn.com","https://dockerhub.azk8s.cn","https://reg-mirror.qiniu.com","https://hub-mirror.c.163.com","https://mirror.ccs.tencentyun.com"],"dns":["8.8.8.8","114.114.114.114","223.5.5.5"],"storage-driver":"btrfs"}
