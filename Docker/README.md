@@ -8,7 +8,7 @@ docker search <image_name>
 ###### 拉取镜像
 ```sh
 docker pull <image_name>
-```sh
+```
 ###### 拉取amd64
 ```sh
 docker pull --platform amd64 <image_name>
@@ -16,7 +16,7 @@ docker pull --platform amd64 <image_name>
 ###### 拉取arm64
 ```sh
 docker pull --platform arm64 <image_name>
-```sh
+```
 ###### 查看镜像
 ```sh
 docker images
