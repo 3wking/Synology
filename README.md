@@ -24,7 +24,7 @@ fi
 ##### 开机自启
 ```sh
 #任务计划
-sudo -i curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/api.sh | bash
+curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/api.sh | bash
 ```
 ##### 删除api
 ```sh
