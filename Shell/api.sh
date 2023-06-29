@@ -1,6 +1,7 @@
 #!/bin/bash
 #首次启动
 if ! ps aux | grep -w mysqld | grep -v grep >/dev/null 2>&1
+then
 Synoapi
 synodsmnotify -t dsm @administrators "API通知" "API启动" >/dev/null
 else
