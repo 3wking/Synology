@@ -4,7 +4,7 @@ GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
 
 #下载路径
-Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/api.cgi"
+Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/api"
 #创建临时目录
 dir=$(mktemp -d) && cd $dir || exit 1
 #api目录
