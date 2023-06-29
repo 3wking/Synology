@@ -4,11 +4,7 @@ GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
 
 #下载路径
-Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/api"
-#创建临时目录
-dir=$(mktemp -d) && cd $dir || exit 1
-#api目录
-api="/usr/syno/synoman/api"
+Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi"
 #设置GitHub加速下载
 ip_info=$(curl -sk https://ip.cooluc.com)
 country_code=$(echo $ip_info | sed -r 's/.*country_code":"([^"]*).*/\1/')
@@ -20,65 +16,33 @@ if [ $country_code = "CN" ]; then
 fi
 
 #下载
-Download() (
+function Download() (
 	echo -e "\r\n${GREEN_COLOR}下载软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}正在下载 $Synoapi ...${RES}"
 	curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}下载 $Synoapi 失败.${RES}\r\n"
-		rm -rf $dir
+		rm -f $dir/Synoapi
 		exit 1
 	fi
 )
-
-# 检查
-Check() (
-	echo -e "\r\n${GREEN_COLOR}正在检查目录...${RES}\r\n"
-	if [ ! -d $api ]; then
-		echo -e "${GREEN_COLOR}创建<${api}>目录.${RES}\r\n"
-		sudo mkdir $api
-		if [ $? -ne 0 ]; then
-			echo -e "${RED_COLOR}创建<${api}>目录失败.${RES}\r\n"
-			sudo rm -rf $dir
-			exit 1
-		fi				
-	fi
-	echo -e "${GREEN_COLOR}更改<${api}>目录权限.${RES}\r\n"
-	sudo chmod -R 0755 $api
-	if [ $? -ne 0 ]; then
-		echo -e "${RED_COLOR}更改<${api}>权限失败.${RES}\r\n"
-		sudo rm -rf $dir $api
-		exit 1
-	fi	
-)
-	
 
 # 安装
-Install() (
+function Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
-	echo -e "${GREEN_COLOR}移动文件...${RES}\r\n"
-	sudo mv $dir/api.cgi $api/
-	if [ $? -ne 0 ]; then
-		echo -e "${RED_COLOR}移动文件失败.${RES}\r\n"
-		sudo rm -rf $dir $api
-		exit 1
-	fi
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
-	sudo chmod -R 0755 $api/api.cgi
+	chmod -R 0755 $dir/Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
-		sudo rm -rf $dir $api
+		rm -f $dir/Synoapi
 		exit 1
 	fi
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
 
+#进入目录
+dir="/usr/local/bin" && cd $dir || exit 1
 Download
-if [ $? -eq 0 ]; then
-	 Check
-else
-	exit 1
-fi
 if [ $? -eq 0 ]; then
 	 Install
 fi		
