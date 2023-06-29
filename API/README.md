@@ -1,7 +1,7 @@
-# Synology
+# API
 ##### DSM7.0权限的api
 ```sh
-sudo -i curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/API/api.sh | bash
+curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/install_api.sh | bash
 ```
 ##### 调用
 ```sh
