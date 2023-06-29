@@ -4,8 +4,6 @@ if ! ps aux | grep -w mysqld | grep -v grep >/dev/null 2>&1
 then
 Synoapi
 synodsmnotify -t dsm @administrators "API通知" "API启动" >/dev/null
-else
-synodsmnotify -t dsm @administrators "API通知" "API已启动" >/dev/null
 fi
 #进程守护
 while :
