@@ -9,3 +9,4 @@ for((i=1;i<=60;i++));do
 	fi
 	sleep 10
 done
+exit 0
