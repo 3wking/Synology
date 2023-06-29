@@ -25,7 +25,7 @@ fi
 ##### 开机自启
 ```sh
 #任务计划
-bash Synoapi
+/usr/local/bin/Synoapi
 ```
 ##### 删除api
 ```sh
