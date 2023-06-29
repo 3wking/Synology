@@ -1,5 +1,6 @@
 # Synology
-##### DSM7.0权限的api
+## DSM7.0 root权限的api
+##### 安装api
 ```sh
 curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/install_api.sh | bash
 ```
@@ -24,12 +25,13 @@ fi
 ##### 开机自启
 ```sh
 #任务计划
-curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/api.sh | bash
+bash Synoapi
 ```
 ##### 删除api
 ```sh
 rm -f /usr/local/bin/Synoapi
 ```
+## 其他命令
 ##### 备份
 ```sh
 curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/backups.sh | bash
