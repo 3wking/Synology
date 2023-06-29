@@ -1,7 +1,7 @@
 # Synology
 ##### DSM7.0权限的api
 ```sh
-sudo -i curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/api.sh | bash
+sudo -i curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/API/api.sh | bash
 ```
 ##### 调用
 ```sh
@@ -21,15 +21,12 @@ else
 	exit 1
 fi
 ```
-##### 备份
+##### 开机自启
 ```sh
-curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/backups.sh | bash
+#任务计划
+sudo -i curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/api.sh | bash
 ```
-##### 添加网口
+##### 删除api
 ```sh
-curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/Network.sh | bash
-```
-##### 开机通知
-```sh
-curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/Power.sh | bash
+rm -f /usr/local/bin/Synoapi
 ```
