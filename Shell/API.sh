@@ -1,18 +1,18 @@
 #!/bin/bash
-#é¦–æ¬¡å¯åŠ¨
+#Ê×´ÎÆô¶¯
 if ! ps aux | grep -w mysqld | grep -v grep >/dev/null 2>&1
 Synoapi
-synodsmnotify -t dsm @administrators "APIé€šçŸ¥" "APIå¯åŠ¨" >/dev/null
+synodsmnotify -t dsm @administrators "APIÍ¨Öª" "APIÆô¶¯" >/dev/null
 else
-synodsmnotify -t dsm @administrators "APIé€šçŸ¥" "APIå·²å¯åŠ¨" >/dev/null
+synodsmnotify -t dsm @administrators "APIÍ¨Öª" "APIÒÑÆô¶¯" >/dev/null
 fi
-#è¿›ç¨‹å®ˆæŠ¤
+#½ø³ÌÊØ»¤
 while :
 do
 if ! ps aux | grep -w mysqld | grep -v grep >/dev/null 2>&1
 then
 Synoapi
-synodsmnotify -t dsm @administrators "APIé€šçŸ¥" "APIå¯åŠ¨" >/dev/null
+synodsmnotify -t dsm @administrators "APIÍ¨Öª" "APIÆô¶¯" >/dev/null
 fi
 sleep 600
 done
