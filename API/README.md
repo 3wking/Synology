@@ -23,10 +23,9 @@ else
 	exit 1
 	fi
 ```
-##### 开机自启
+##### 开启api
 ```sh
-#任务计划
-sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/api.sh | bash
+sudo bash Synoapi
 ```
 ##### 关闭api
 ```sh
@@ -34,5 +33,10 @@ sudo killall -9 Synoapi
 ```
 ##### 删除api
 ```sh
-sudo rm -f /usr/local/bin/Synoapi
+sudo rm -f /usr/syno/bin/Synoapi
+```
+##### 开机自启
+```sh
+#任务计划
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/api.sh | bash
 ```

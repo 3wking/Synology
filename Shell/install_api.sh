@@ -41,7 +41,7 @@ function Install() (
 )
 
 #进入目录
-dir="/usr/local/bin" && cd $dir || exit 1
+dir="/usr/syno/bin" && cd $dir || exit 1
 Download
 if [ $? -eq 0 ]; then
 	 Install
