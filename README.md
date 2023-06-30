@@ -27,6 +27,10 @@ fi
 #任务计划
 /usr/local/bin/Synoapi
 ```
+##### 关闭api
+```sh
+killall -9 Synoapi
+```
 ##### 删除api
 ```sh
 rm -f /usr/local/bin/Synoapi
