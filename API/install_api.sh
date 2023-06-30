@@ -51,13 +51,12 @@ function Install() (
 		sudo synopkg uninstall Synoapi
 		exit 1
 	fi
-	echo -e "${GREEN_COLOR}运行api...${RES}\r\n"
+	echo -e "${GREEN_COLOR}运行软件...${RES}\r\n"
 	sudo synopkg start Synoapi
 	if [ $? -ne 0 ]; then
-		echo -e "${RED_COLOR}运行api失败.${RES}\r\n"
+		echo -e "${RED_COLOR}运行软件失败.${RES}\r\n"
 		exit 1
 	fi
-	
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
 
