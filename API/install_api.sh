@@ -3,6 +3,12 @@ RED_COLOR='\e[1;31m' #红色
 GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
 
+#套件是否安装
+if synopkg list | grep -w Synoapi | grep -v grep >/dev/null 2>&1; then
+	echo -e "${RED_COLOR}运行api失败.${RES}\r\n"
+	exit 1
+fi
+
 #下载路径
 Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi.spk"
 #设置GitHub加速下载
@@ -60,4 +66,4 @@ dir=$(mktemp -d) && cd $dir || exit 1
 Download
 if [ $? -eq 0 ]; then
 	 Install
-fi		
+fi
