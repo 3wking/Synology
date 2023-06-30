@@ -1,6 +1,6 @@
 # Synology
 ## DSM7.0 root权限的api
-##### 安装api
+##### 安装Synoapi.spk
 ```sh
 sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_api.sh | bash
 ```
@@ -23,27 +23,6 @@ else
 	echo "<p style=\"color:red;\">退出安装.</p>"
 	exit 1
 	fi
-```
-##### 开启api
-```sh
-sudo /usr/syno/bin/Synoapi
-```
-##### 关闭api
-```sh
-sudo killall -9 Synoapi
-```
-##### 删除api
-```sh
-sudo rm -f /usr/syno/bin/Synoapi
-```
-##### 查看api进程
-```sh
-ps aux | grep -w Synoapi | grep -v grep
-```
-##### 开机自启
-```sh
-#任务计划
-sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/api.sh | bash
 ```
 
 ## 其他命令
