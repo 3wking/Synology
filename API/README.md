@@ -1,7 +1,7 @@
 # API
 ##### DSM7.0权限的api
 ```sh
-sudu curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/install_api.sh | bash
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/install_api.sh | bash
 ```
 ##### 调用
 ```sh
@@ -26,9 +26,13 @@ else
 ##### 开机自启
 ```sh
 #任务计划
-sudo -i curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/api.sh | bash
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/api.sh | bash
+```
+##### 关闭api
+```sh
+sudo killall -9 Synoapi
 ```
 ##### 删除api
 ```sh
-rm -f /usr/local/bin/Synoapi
+sudo rm -f /usr/local/bin/Synoapi
 ```
