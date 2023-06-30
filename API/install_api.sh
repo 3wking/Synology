@@ -5,7 +5,7 @@ RES='\e[0m' #尾
 
 #套件是否安装
 if synopkg list | grep -w Synoapi | grep -v grep >/dev/null 2>&1; then
-	echo -e "${RED_COLOR}运行api失败.${RES}\r\n"
+	echo -e "${GREEN_COLOR}套件是已安装.${RES}\r\n"
 	exit 1
 fi
 
