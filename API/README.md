@@ -1,11 +1,11 @@
 # API
 ##### DSM7.0权限的api
 ```sh
-curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/install_api.sh | bash
+sudu curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/install_api.sh | bash
 ```
 ##### 调用
 ```sh
-#安装前里添加
+#preinst
 api_url="http://127.0.0.1:1001"
 status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST $api_url)
 if [[ $status_code == 200 ]]; then
@@ -13,13 +13,15 @@ if [[ $status_code == 200 ]]; then
 	privilege="`echo $dir | awk -F '/scripts' '{print $1}'`/conf/privilege"
 	ret=$(curl -d "dir=$privilege" -X POST $api_url)
 	if [[ $ret != "OK" ]]; then
-		echo "调用api失败"
+		echo "<br><p style=\"color:red;\">调用api失败.</p>"
+		echo "<p style=\"color:red;\">退出安装.</p>"
 		exit 1
 	fi
 else
-	echo "未启用api"
+	echo "<br><p style=\"color:red;\">未启用api.</p>"
+	echo "<p style=\"color:red;\">退出安装.</p>"
 	exit 1
-fi
+	fi
 ```
 ##### 开机自启
 ```sh
