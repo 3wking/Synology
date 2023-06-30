@@ -19,10 +19,10 @@ fi
 function Download() (
 	echo -e "\r\n${GREEN_COLOR}下载软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}正在下载 $Synoapi ...${RES}"
-	curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
+	sudo curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}下载 $Synoapi 失败.${RES}\r\n"
-		rm -f $dir/Synoapi
+		sudo rm -f $dir/Synoapi
 		exit 1
 	fi
 )
@@ -31,10 +31,10 @@ function Download() (
 function Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
-	chmod -R 0755 $dir/Synoapi
+	sudo chmod -R 0755 $dir/Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
-		rm -f $dir/Synoapi
+		sudo rm -f $dir/Synoapi
 		exit 1
 	fi
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
