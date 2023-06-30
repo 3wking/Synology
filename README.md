@@ -2,7 +2,7 @@
 ## DSM7.0 root权限的api
 ##### 安装api
 ```sh
-sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/install_api.sh | bash
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_api.sh | bash
 ```
 ##### 调用api
 ```sh
