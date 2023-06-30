@@ -7,7 +7,7 @@ sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_api.s
 ##### 调用api
 ```sh
 #preinst
-api_url="http://127.0.0.1:1001"
+api_url="http://127.0.0.1:5"
 status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST $api_url)
 if [[ $status_code == 200 ]]; then
 	dir=$(cd `dirname $0`;pwd)
