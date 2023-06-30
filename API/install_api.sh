@@ -10,7 +10,7 @@ if synopkg list | grep -w Synoapi | grep -v grep >/dev/null 2>&1; then
 fi
 
 #下载路径
-Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi.spk"
+Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi_DSM7.spk"
 #设置GitHub加速下载
 ip_info=$(curl -sk https://ip.cooluc.com)
 country_code=$(echo $ip_info | sed -r 's/.*country_code":"([^"]*).*/\1/')
@@ -36,7 +36,7 @@ function Download() (
 # 安装
 function Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
-	sudo synopkg install $dir/Synoapi.spk
+	sudo synopkg install $dir/Synoapi_DSM7.spk
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}安装软件包失败.${RES}\r\n"
 		sudo rm -f $dir
