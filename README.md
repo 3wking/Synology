@@ -2,11 +2,11 @@
 ## DSM7.0 root权限的api
 ##### 安装api
 ```sh
-curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/install_api.sh | bash
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/install_api.sh | bash
 ```
-##### 调用
+##### 调用api
 ```sh
-#安装前里添加
+#preinst
 api_url="http://127.0.0.1:1001"
 status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST $api_url)
 if [[ $status_code == 200 ]]; then
@@ -14,27 +14,38 @@ if [[ $status_code == 200 ]]; then
 	privilege="`echo $dir | awk -F '/scripts' '{print $1}'`/conf/privilege"
 	ret=$(curl -d "dir=$privilege" -X POST $api_url)
 	if [[ $ret != "OK" ]]; then
-		echo "调用api失败"
+		echo "<br><p style=\"color:red;\">调用api失败.</p>"
+		echo "<p style=\"color:red;\">退出安装.</p>"
 		exit 1
 	fi
 else
-	echo "未启用api"
+	echo "<br><p style=\"color:red;\">未启用api.</p>"
+	echo "<p style=\"color:red;\">退出安装.</p>"
 	exit 1
-fi
+	fi
+```
+##### 开启api
+```sh
+sudo /usr/syno/bin/Synoapi
+```
+##### 关闭api
+```sh
+sudo killall -9 Synoapi
+```
+##### 删除api
+```sh
+sudo rm -f /usr/syno/bin/Synoapi
+```
+##### 查看api进程
+```sh
+ps aux | grep -w Synoapi | grep -v grep
 ```
 ##### 开机自启
 ```sh
 #任务计划
-/usr/local/bin/Synoapi
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/api.sh | bash
 ```
-##### 关闭api
-```sh
-killall -9 Synoapi
-```
-##### 删除api
-```sh
-rm -f /usr/local/bin/Synoapi
-```
+
 ## 其他命令
 ##### 备份
 ```sh

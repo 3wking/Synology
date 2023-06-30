@@ -1,9 +1,10 @@
 # API
-##### DSM7.0权限的api
+## 
+##### 安装DSM7.0权限的api
 ```sh
 sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/Shell/install_api.sh | bash
 ```
-##### 调用
+##### 调用api
 ```sh
 #preinst
 api_url="http://127.0.0.1:1001"
@@ -25,7 +26,7 @@ else
 ```
 ##### 开启api
 ```sh
-sudo bash Synoapi
+sudo /usr/syno/bin/Synoapi
 ```
 ##### 关闭api
 ```sh
@@ -34,6 +35,10 @@ sudo killall -9 Synoapi
 ##### 删除api
 ```sh
 sudo rm -f /usr/syno/bin/Synoapi
+```
+##### 查看api进程
+```sh
+ps aux | grep -w Synoapi | grep -v grep
 ```
 ##### 开机自启
 ```sh
