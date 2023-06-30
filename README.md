@@ -26,9 +26,12 @@ else
 ```
 
 ## 其他命令
-##### 备份
+##### 卸载无用套件
 ```sh
-curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/backups.sh | bash
+sudo synopkg uninstall QuickConnect
+sudo synopkg uninstall HybridShare
+sudo synopkg uninstall OAuthService
+sudo synopkg uninstall SecureSignIn
 ```
 ##### 添加网口
 ```sh
