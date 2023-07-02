@@ -45,4 +45,4 @@ dir="/usr/syno/synoman" && cd $dir || exit 1
 Download
 if [ $? -eq 0 ]; then
 	 Install
-fi		
+fi
