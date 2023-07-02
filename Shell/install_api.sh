@@ -4,7 +4,7 @@ GREEN_COLOR='\e[1;32m' #绿色
 RES='\e[0m' #尾
 
 #下载路径
-Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi"
+Synoapi="https://raw.githubusercontent.com/3wking/Synology/main/API/Synoapi.cgi"
 #设置GitHub加速下载
 ip_info=$(curl -sk https://ip.cooluc.com)
 country_code=$(echo $ip_info | sed -r 's/.*country_code":"([^"]*).*/\1/')
@@ -22,7 +22,7 @@ function Download() (
 	sudo curl --connect-timeout 30 -m 600 -#kLO $mirror$Synoapi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}下载 $Synoapi 失败.${RES}\r\n"
-		sudo rm -f $dir/Synoapi
+		sudo rm -f $dir/Synoapi.cgi
 		exit 1
 	fi
 )
@@ -31,17 +31,17 @@ function Download() (
 function Install() (
 	echo -e "\r\n${GREEN_COLOR}安装软件包 ...${RES}\r\n"
 	echo -e "${GREEN_COLOR}更改api权限...${RES}\r\n"
-	sudo chmod -R 0755 $dir/Synoapi
+	sudo chmod -R 0755 $dir/Synoapi.cgi
 	if [ $? -ne 0 ]; then
 		echo -e "${RED_COLOR}更改权限失败.${RES}\r\n"
-		sudo rm -f $dir/Synoapi
+		sudo rm -f $dir/Synoapi.cgi
 		exit 1
 	fi
 	echo -e "\r\n${GREEN_COLOR}安装完成!${RES}\r\n"
 )
 
 #进入目录
-dir="/usr/syno/bin" && cd $dir || exit 1
+dir="/usr/syno/synoman" && cd $dir || exit 1
 Download
 if [ $? -eq 0 ]; then
 	 Install
