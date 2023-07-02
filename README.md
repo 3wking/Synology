@@ -2,11 +2,11 @@
 ## DSM7.0 root权限的api
 ##### 安装Synoapi.spk
 ```sh
-sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_api.sh | bash
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_Synoapi.spk.sh | bash
 ```
 ##### 安装Synoapi.cgi
 ```sh
-sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_api.sh | bash
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_Synoapi.cgi.sh | bash
 ```
 ##### 套件调用api
 ```sh
@@ -65,4 +65,11 @@ curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/Network.sh | bash
 ##### 开机通知
 ```sh
 curl -k https://cdn.jsdelivr.net/gh/3wking/Synology@main/Shell/Power.sh | bash
+```
+##### 查找进程
+```sh
+if ! ps aux | grep -w Synoapi | grep -v grep >/dev/null 2>&1
+then
+//进程不存在
+fi
 ```
