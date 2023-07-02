@@ -39,7 +39,7 @@ if [[ $status_code == 200 ]]; then
 	dir=$(cd `dirname $0`;pwd)
 	privilege="`echo $dir | awk -F '/scripts' '{print $1}'`/conf/privilege"
 	ret=$(curl -d "dir=$privilege" -X POST $api_url)
-	if ! echo $ret | grep "OK" ; then
+	if ! echo $ret | grep "OK" >/dev/null 2>&1; then
 		echo "<br><p style=\"color:red;\">调用api失败.</p>"
 		echo "<p style=\"color:red;\">退出安装.</p>"
 		exit 1
