@@ -4,9 +4,13 @@
 ```sh
 sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_api.sh | bash
 ```
-##### 调用api
+##### 安装Synoapi.cgi
 ```sh
-#preinst
+sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_api.sh | bash
+```
+##### 套件调用api
+```sh
+#preinst  //自带服务端
 api_url="http://127.0.0.1:5"
 status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST $api_url)
 if [[ $status_code == 200 ]]; then
@@ -14,6 +18,27 @@ if [[ $status_code == 200 ]]; then
 	privilege="`echo $dir | awk -F '/scripts' '{print $1}'`/conf/privilege"
 	ret=$(curl -d "dir=$privilege" -X POST $api_url)
 	if [[ $ret != "OK" ]]; then
+		echo "<br><p style=\"color:red;\">调用api失败.</p>"
+		echo "<p style=\"color:red;\">退出安装.</p>"
+		exit 1
+	fi
+else
+	echo "<br><p style=\"color:red;\">未启用api.</p>"
+	echo "<p style=\"color:red;\">退出安装.</p>"
+	exit 1
+	fi
+```
+
+##### 调用api
+```sh
+#preinst  //系统服务端
+api_url="http://127.0.0.1:5000/Synoapi.cgi"
+status_code=$(curl -s -o /dev/null -w "%{http_code}" -X POST $api_url)
+if [[ $status_code == 200 ]]; then
+	dir=$(cd `dirname $0`;pwd)
+	privilege="`echo $dir | awk -F '/scripts' '{print $1}'`/conf/privilege"
+	ret=$(curl -d "dir=$privilege" -X POST $api_url)
+	if ! echo $ret | grep "OK" ; then
 		echo "<br><p style=\"color:red;\">调用api失败.</p>"
 		echo "<p style=\"color:red;\">退出安装.</p>"
 		exit 1
