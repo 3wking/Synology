@@ -1,10 +1,10 @@
 # Synology
 ## DSM7.0 root权限的api
-##### 安装Synoapi.spk
+##### install_Synoapi.spk
 ```sh
 sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_Synoapi.spk.sh | bash
 ```
-##### 安装Synoapi.cgi
+##### install_Synoapi.cgi
 ```sh
 sudo curl -k https://raw.fastgit.ixmu.net/3wking/Synology/main/API/install_Synoapi.cgi.sh | bash
 ```
